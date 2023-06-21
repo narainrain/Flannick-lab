@@ -46,7 +46,6 @@ def arg_generate_causal_snps():
     parser.add_option("", "--raw-file-location", default="./raw/")  # the location of the ld files
     parser.add_option("", "--chrom-start", default="22", type="int")  # This is used in case a specific chromosome is wanted
     # the default chromosome should be 1 to cover all chromosomes from 1-22
-    parser.add_option("", "--replicates", default="1", type="int")  # This is used in case a specific chromosome is wante
     (options, _) = parser.parse_args()
     return options
 
@@ -55,7 +54,7 @@ def arg_simulations_pipeline():
     parser = OptionParser("usage: %prog [options]")
     # General options  ====================================================
     parser.add_option("", "--bim-file", default="./raw/1000G.EUR.QC.22.bim")  # all SNPs in the region
-    parser.add_option("", "--ld-file", default="./raw/22.ld")  # in row form
+    parser.add_option("", "--ld-file", default="./raw/22.ld")  # LD files
     parser.add_option("", "--ld-threshold", default=0, type="float")
     parser.add_option("", "--h2", default=0.1212, type="float")  # 1-h2 is added as phenotypic variance
     parser.add_option("", "--N", default=100000, type="float")  # sample size for sumstat simulations

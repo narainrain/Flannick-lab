@@ -23,21 +23,14 @@ class GenerateCausalGenesOrSnps:
     # ----------------------------------------------------------------------------------------------------------------------
     # This is for the null case with no causal genes or snps => true betas should be 0
     def null_case(self):
-        if (
-                self.options.p_snps_in_causal_gene == 0 or self.options.p_causal_gene == 0) and self.options.p_causal_snps == 0:
-            print("Entering Null case: therefore 0 causal snps")
+        print("Entering Null case: therefore 0 causal snps")
+        file_output = open(str(self.options.output_file) + ".causal_snps", "w")
+        file_output.write("Chromosome\tSNP\tUnknown\tPosition\tRef\tAlt\n")
+        file_output.close()
 
-            file_output = open(str(self.options.output_file) + ".causal_snps", "w")
-            file_output.write("Chromosome\tSNP\tUnknown\tPosition\tRef\tAlt\n")
-            file_output.close()
-
-            file_output = open(str(self.options.output_file) + ".causal_genes", "w")
-            file_output.write("Gene\tChromosome\tPosition Start\tPosition End\n")
-            file_output.close()
-
-        else:
-
-            raise Exception("Parameter Error: Do not have the correct parameters to run null cases")
+        file_output = open(str(self.options.output_file) + ".causal_genes", "w")
+        file_output.write("Gene\tChromosome\tPosition Start\tPosition End\n")
+        file_output.close()
 
     # ----------------------------------------------------------------------------------------------------------------------
     # This is for the PEGs model where there are causal genes and causal snps inside, but there is a chance to generate causal
@@ -192,7 +185,7 @@ class GenerateCausalGenesOrSnps:
     # ----------------------------------------------------------------------------------------------------------------------
     # This method will only create causal snps from randomized causal genes but ignoring generation of causal snps outside the causal genes
     def non_infinitesimal_snp_cluster(self):
-        print("This is the snps in causal gene: ", self.options.p_snps_in_causal_gene)
+
         if self.options.p_causal_gene != 0 and self.options.p_snps_in_causal_gene != 0:
             print("Entered Non-Infinitesimal Snp Cluster: generation of snps within causal genes only")
 
@@ -327,8 +320,7 @@ class GenerateCausalGenesOrSnps:
 
             import random
 
-            print("Entered Non-Infinitesimal Model: generation of causal snps without genes with probability: ",
-                  self.options.p_causal_snps)
+            print("Entered Non-Infinitesimal Model")
             proportion_causal = self.options.p_causal_snps
 
             file_output = open(str(self.options.output_file) + ".causal_genes", "w")
