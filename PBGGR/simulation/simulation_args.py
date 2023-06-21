@@ -5,12 +5,11 @@ This is an file used that contains the arguments used in the simulation pipeline
 There are two functions here: arg_generate_causal_snps and arg_simulations_pipeline
 
 The arg_generate_causal_snps is used before the arg_simulations_pipeline to generate the causal snps
-that will be the input to the simulations_pipeline. The different non-zero arguments are required for
+that will be the input to the simulations_pipeline. There are different non-zero arguments are required for
 different models
 
 Null Case (probability true betas = 0):
-    p-causal-gene = 0
-    p-causal-snp = 0
+    None needed
 Infinitesimal (probability true betas = 1):
     p-causal-snp = 1
 Non-Infinitesimal (0 < probability true betas < 1):
